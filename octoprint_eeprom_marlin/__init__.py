@@ -24,7 +24,7 @@ from octoprint_eeprom_marlin import (
     sponsors_contributors,
 )
 
-__version__ = _version.get_versions()["version"]
+__version__ = _version.get_data()["version"]
 del _version
 
 

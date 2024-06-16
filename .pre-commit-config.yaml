@@ -1,4 +1,4 @@
-exclude: ^(translations/|.*\.css|.*\.svg|octoprint_eeprom_marlin/static/webfonts|versioneer.py|octoprint_eeprom_marlin/_version.py)
+exclude: ^(translations/|.*\.css|.*\.svg|octoprint_eeprom_marlin/static/webfonts)
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.4.0
@@ -15,7 +15,7 @@ repos:
     hooks:
       - id: pyupgrade
         args: ["--py37-plus"]
-        exclude: "setup.py|versioneer.py|_version.py"
+        exclude: "setup.py"
   - repo: https://github.com/OctoPrint/codemods
     rev: "0.6.3"
     hooks:

@@ -1,9 +1,5 @@
 # -*- coding: utf-8 -*-
 
-import versioneer
-
-########################################################################################################################
-
 # The plugin's identifier, has to be unique
 plugin_identifier = "eeprom_marlin"  # DO NOT CHANGE IN PRODUCTION
 
@@ -14,10 +10,22 @@ plugin_package = "octoprint_eeprom_marlin"  # DO NOT CHANGE IN PRODUCTION
 # plugin module
 plugin_name = "Marlin EEPROM editor"  # DO NOT CHANGE IN PRODUCTION - use internal data
 
-# The plugin's version. Can be overwritten within OctoPrint's internal data via __plugin_version__ in the plugin module
-plugin_version = versioneer.get_version()
+# Find the package version
+import os
+from importlib.util import module_from_spec, spec_from_file_location
 
-plugin_cmdclass = versioneer.get_cmdclass()
+spec = spec_from_file_location("version", os.path.join(plugin_package, "_version.py"))
+module = module_from_spec(spec)
+spec.loader.exec_module(module)
+
+data = module.get_data()
+version = data["version"]
+cmdclass = module.get_cmdclass(plugin_package)
+
+# The plugin's version. Can be overwritten within OctoPrint's internal data via __plugin_version__ in the plugin module
+plugin_version = version
+
+plugin_cmdclass = cmdclass
 
 # The plugin's description. Can be overwritten within OctoPrint's internal data via __plugin_description__ in the plugin
 # module
@@ -36,7 +44,9 @@ plugin_url = "https://github.com/cp2004/OctoPrint-EEPROM-Marlin"
 plugin_license = "AGPLv3"
 
 # Any additional requirements besides OctoPrint should be listed here
-plugin_requires = ["mock"]  # Mock is required for tests, not operation.
+plugin_requires = [
+    "mock"
+]  # Mock is required for tests, not operation. TODO remove for prod, make optional
 
 # # --------------------------------------------------------------------------------------------------------------------
 # # More advanced options that you usually shouldn't have to touch follow after this point

@@ -1,3 +1,2 @@
 include README.md
-include versioneer.py
 include octoprint_eeprom_marlin/_version.py
