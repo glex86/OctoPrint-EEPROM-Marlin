@@ -67,4 +67,5 @@ I created this project in my spare time, and do my best to support the community
 ## Check out my other plugins
 
 You can see all of my published OctoPrint plugins [on the OctoPrint Plugin Repository!](https://plugins.octoprint.org/by_author/#charlie-powell) Or, if you're feeling nosy and want to see what else I'm working on, check out my [GitHub profile](https://github.com/cp2004).
+
 ## ✏️ 🔧
