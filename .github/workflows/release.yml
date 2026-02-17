@@ -2,6 +2,7 @@ name: Release
 on:
   release:
     types: [published, prereleased]
+  workflow_dispatch:
 
 jobs:
   build:
@@ -40,11 +41,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 🏗 Set up Python ${{ matrix.python }}
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python }}
       - name: ⬇ Download build result
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: dist
           path: dist
@@ -59,12 +60,13 @@ jobs:
   upload-asset:
     name: 📦 Upload asset to release
     runs-on: ubuntu-latest
+    if: github.event_name == 'release'
     needs:
       - build
       - test-install
     steps:
       - name: ⬇ Download build result
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: dist
           path: dist
