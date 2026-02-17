@@ -39,7 +39,7 @@ jobs:
     name: 🧪 Unit tests
     strategy:
       matrix:
-        python: ["3.7", "3.9", "3.11"]
+        python: ["3.11"]
         octoprint: [">=1.5.0"]
     runs-on: ubuntu-latest
     steps:
@@ -79,7 +79,7 @@ jobs:
     needs: build
     strategy:
       matrix:
-        python: ["3.7", "3.9", "3.11"]
+        python: ["3.11"]
     runs-on: ubuntu-latest
     steps:
       - name: 🏗 Set up Python ${{ matrix.python }}
